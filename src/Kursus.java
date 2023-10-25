@@ -86,12 +86,13 @@ public class Kursus {
                 ", Antal deltager= " + antalDeltagere;
     }
 
-    public void tilfoejStuderende(Studerende s) {
+    public boolean tilfoejStuderende(Studerende s) {
         if (antalDeltagere <studerende.length) {
             studerende[antalDeltagere] = s;
             antalDeltagere++;
+            return true;
         } else {
-            System.out.println("Dette kursus er fyldt op");
+            return false;
         }
     }
 
@@ -121,7 +122,10 @@ public class Kursus {
         Studerende studerende1 = new Studerende(1,"mikkel","pelle","123 pellevej", "22558351");
         Studerende studerende2 = new Studerende(1,"Oliver","pelle","124 pellevej", "22558355");
 
-        kursus1.tilfoejStuderende(studerende1);
+        boolean res=kursus1.tilfoejStuderende(studerende1);
+        if(res == false){
+            System.out.println("Der er ikke plads");
+        }
         kursus1.tilfoejStuderende(studerende2);
         udskrivKursus(kursus1);
         kursus1.frameld(studerende1);
